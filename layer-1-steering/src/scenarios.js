@@ -270,8 +270,9 @@ export const SCENARIOS = {
       // for the "it still seeks the odor zone" demonstration later).
       world.addSource({ x: cx, y: cy, channel: 'odorA', strength: 1.0, radius: 250 });
       // Food, co-located. Starts ON for the first pairing; scenario.tick cycles it.
-      // Very wide radius means the priming phase reliably pulls the agent in.
-      world.addSource({ x: cx, y: cy, channel: CHANNEL.FOOD, strength: 1.5, radius: 300 });
+      // Very wide radius so the off-phase-returning agent can pick up the
+      // food gradient from its nearby-but-drifting position during each pulse.
+      world.addSource({ x: cx, y: cy, channel: CHANNEL.FOOD, strength: 1.6, radius: 380 });
       return new AgentClass({
         x: world.width * 0.3,
         y: world.height * 0.5,
@@ -296,19 +297,19 @@ export const SCENARIOS = {
         return;
       }
 
-      // Pairing cycle after priming: 50 ticks food on / 350 ticks food off.
-      // Short on-phase → agent only partially satiates (hunger doesn't fully
-      // crash, liking peaks lower). Long off-phase → hunger rises back above
-      // the residual liking, so drive (hunger − liking) returns positive and
-      // the learned odorA valence actually drives pursuit. Without this, the
-      // agent stays "sort of full" the whole cycle and never chases the cue —
-      // which is biologically accurate but hides the whole demo.
-      const phase = (tickNum - PRIMING) % 400;
+      // Pairing cycle after priming: 100 ticks food on / 350 ticks food off.
+      // On-phase is long enough that an agent returning to the zone on the
+      // learned odorA signal can reliably reach food, eat, and reinforce the
+      // association — keeping learning ahead of extinction. Off-phase is still
+      // long enough that hunger catches up to liking (drive returns positive)
+      // before the next pulse, which is what lets the learned cue drive
+      // pursuit in the first place.
+      const phase = (tickNum - PRIMING) % 450;
       if (phase === 0 && !food.active) {
         food.active = true;
-        food.strength = 1.3;
+        food.strength = 1.6;
         renderer.markDirty();
-      } else if (phase === 50 && food.active) {
+      } else if (phase === 130 && food.active) {
         food.active = false;
         renderer.markDirty();
       }
