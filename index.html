@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Retracing Intelligence</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #0a0c12;
+      --panel: #141821;
+      --panel-2: #1a1f2b;
+      --border: #252b3a;
+      --fg: #e8ecf2;
+      --muted: #7b8394;
+      --accent: #7cc4ff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background:
+        radial-gradient(ellipse at top, #141826 0%, #0a0c12 60%) no-repeat fixed,
+        var(--bg);
+      color: var(--fg);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      letter-spacing: -0.005em;
+      font-feature-settings: "ss01", "cv11";
+      min-height: 100vh;
+    }
+
+    main {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem 4rem;
+    }
+
+    .eyebrow {
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      margin: 0 0 0.75rem 0;
+      font-size: 2.75rem;
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      background: linear-gradient(180deg, #ffffff 0%, #b8c4d8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lede {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 0 0 3rem 0;
+      max-width: 54ch;
+    }
+
+    .lede em {
+      color: var(--fg);
+      font-style: italic;
+    }
+
+    .layer-card {
+      display: block;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.75rem 1.75rem 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 180ms cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .layer-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(124, 196, 255, 0.06) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 180ms;
+      pointer-events: none;
+    }
+
+    .layer-card:hover {
+      border-color: #3a4256;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .layer-card:hover::before { opacity: 1; }
+
+    .layer-num {
+      display: inline-block;
+      font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .layer-title {
+      margin: 0 0 0.3rem 0;
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .layer-era {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 0.9rem;
+    }
+
+    .layer-blurb {
+      color: #c5ccd9;
+      font-size: 0.95rem;
+      margin: 0 0 1rem 0;
+    }
+
+    .layer-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .layer-cta::after {
+      content: "→";
+      transition: transform 180ms;
+    }
+
+    .layer-card:hover .layer-cta::after {
+      transform: translateX(3px);
+    }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--fg); }
+    footer em { color: #c5ccd9; font-style: italic; }
+
+    @media (max-width: 680px) {
+      main { padding: 3rem 1rem 3rem; }
+      h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="eyebrow">Retracing Intelligence</div>
+    <h1>Building brain evolution, one breakthrough at a time.</h1>
+    <p class="lede">
+      An interactive companion to <em>A Brief History of Intelligence</em> by Max Bennett.
+      Each layer re-implements one of the five evolutionary breakthroughs as a runnable agent,
+      sharing the same 2D foraging world so they can be compared directly.
+    </p>
+
+    <a class="layer-card" href="./layer-1-steering/">
+      <div class="layer-num">Layer 01</div>
+      <h2 class="layer-title">Steering</h2>
+      <div class="layer-era">Bilaterians · ~550 million years ago</div>
+      <p class="layer-blurb">
+        A reflex agent with klinokinesis, a six-scalar affective state, and primitive
+        associative learning. No prediction, no world model — and yet the full cycle of
+        drive, pursuit, satiation, and even Pavlov-style conditioning falls out.
+      </p>
+      <span class="layer-cta">Open playground</span>
+    </a>
+
+    <footer>
+      Based on <em>A Brief History of Intelligence</em> by Max Bennett.
+      Source on <a href="https://github.com/">GitHub</a>.
+    </footer>
+  </main>
+</body>
+</html>

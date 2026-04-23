@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Retracing Intelligence — Layer 1: Steering</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <header>
+      <div class="eyebrow">Retracing Intelligence · Layer 1</div>
+      <h1>Steering</h1>
+      <p class="subtitle">
+        A bilaterian reflex agent. No learning, no memory, no prediction —
+        just klinokinesis and a six-scalar affective state.
+      </p>
+    </header>
+
+    <section class="control-strip">
+      <label class="select-control">
+        <span class="control-label">Scenario</span>
+        <select id="scenario">
+          <option value="baseline">Baseline foraging</option>
+          <option value="copper">Copper test (cost–benefit)</option>
+          <option value="berridge">Berridge rat (want ≠ like)</option>
+          <option value="persistence">Persistent affect</option>
+          <option value="chronic-stress">Chronic stress → anhedonia</option>
+          <option value="pavlov">Pavlov's worm (classical conditioning)</option>
+        </select>
+      </label>
+
+      <div class="playback">
+        <button id="play" class="icon-btn" title="Play / pause (space)">⏸</button>
+        <button id="step" class="icon-btn" title="Step one tick">→</button>
+        <button id="reset" class="icon-btn" title="Reset scenario">↻</button>
+      </div>
+
+      <label class="range-control">
+        <span class="control-label">Speed</span>
+        <input type="range" id="speed" min="5" max="120" step="5" value="30" />
+        <span id="speed-val" class="mono">30 tps</span>
+      </label>
+    </section>
+
+    <section class="stage">
+      <canvas id="world" width="600" height="400"></canvas>
+    </section>
+
+    <section class="cockpit" id="cockpit">
+      <!-- State bars are rendered by ui.js -->
+    </section>
+
+    <section class="memory" id="memory" hidden>
+      <!-- Learned cue valences rendered by ui.js when present -->
+    </section>
+
+    <aside class="scenario-info" id="scenario-info">
+      <!-- Scenario title + description rendered by ui.js -->
+    </aside>
+
+    <footer>
+      <span class="mono" id="tick-status">tick 0</span>
+      <span class="sep">·</span>
+      <a href="https://github.com/" class="muted">Retracing Intelligence</a>
+      <span class="sep">·</span>
+      <span class="muted">Based on <em>A Brief History of Intelligence</em> by Max Bennett</span>
+    </footer>
+  </main>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

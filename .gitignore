@@ -1,0 +1,18 @@
+# Claude Code session artifacts (logs, tasks, etc.)
+.claude/
+
+# Blog drafts — kept local until published; remove this line to mirror drafts publicly.
+drafts/
+layer-*/drafts/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Editor directories
+.vscode/
+.idea/
+
+# Node (if we end up using it later for tooling)
+node_modules/
+npm-debug.log*
